@@ -20,6 +20,12 @@ angular.module('ionic.utils', [])
     },
     getObject: function(key) {
       return JSON.parse($window.localStorage[key] || '{}');
+    },
+    setObjectList: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObjectList: function(key) {
+      return JSON.parse($window.localStorage[key] || '[]');
     }
   }
 }]);

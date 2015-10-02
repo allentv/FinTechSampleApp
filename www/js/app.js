@@ -40,6 +40,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     controller: 'ExpenseTrackerCtrl'
   });
 
+  $stateProvider.state('ExpensesList', {
+    url: '/expensesList/',
+    templateUrl: 'partials/ExpensesList.html',
+    controller: 'ExpensesListCtrl'
+  });
+
   $stateProvider.state('ChartDisplay', {
     url: '/chartDisplay/',
     templateUrl: 'partials/ChartDisplay.html',

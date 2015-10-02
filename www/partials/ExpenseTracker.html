@@ -1,1 +1,28 @@
 <!-- Expense capture form -->
+<ion-pane>
+  <ion-header-bar class="bar-stable">
+    <h1 class="title">Expense Tracker</h1>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Name</span>
+        <input type="text" placeholder="Breakfast" ng-model="expense_name">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Amount</span>
+        <input type="text" placeholder="6.50" ng-model="expense_amount">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Category</span>
+        <input type="text" placeholder="Food" ng-model="expense_category">
+      </label>
+      <div class="padding">
+        <button
+          class="button button-block button-positive"
+          ng-click="saveExpense(expense_name, expense_amount, expense_category)">
+          Save Expense</button>
+      </div>
+    </div>
+  </ion-content>
+</ion-pane>

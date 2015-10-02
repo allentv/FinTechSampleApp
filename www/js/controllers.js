@@ -5,16 +5,24 @@
  */
 app.controller(
   'HomeScreenCtrl',
-  ['$scope', '$state',
-  function($scope, $state) {
+  ['$scope', '$state', '$ionicModal', '$ionicPopup',
+  function($scope, $state, $ionicModal, $ionicPopup) {
     $scope.showExpenseTracker = function() {
       $state.go("ExpenseTracker");
+    };
+    $scope.showExpensesList = function() {
+      $state.go("ExpensesList");
     };
     $scope.showChart = function() {
       $state.go("ChartDisplay");
     };
-    $scope.showAbout = function() {
-      //TODO: Add code for popup display
+
+    // An alert dialog
+    $scope.showAlert = function() {
+     var alertPopup = $ionicPopup.alert({
+       title: 'About Us',
+       template: 'This is a sample mobile app created for FinTech Weekend<br><br>@IdeaStarter + @Qualtrics + TES'
+     });
     };
   }
   ]
@@ -24,7 +32,32 @@ app.controller(
   'ExpenseTrackerCtrl',
   ['$scope', '$state', '$localstorage',
   function($scope, $state, $localstorage) {
+    // TODO: Save information
+    $scope.saveExpense = function(
+      expense_name, expense_amount, expense_category
+    ) {
+      // Data is saved as a list of JSON objects, each representing one expense
+      var expensesListData = $localstorage.getObjectList("expenses");
+      expensesListData.push(
+        {
+          "name": expense_name,
+          "amount": expense_amount,
+          "category": expense_category
+        }
+      );
+      // Save the list of expenses to Local Storage
+      $localstorage.setObjectList("expenses", expensesListData);
+      $state.go("Home");
+    };
+  }
+  ]
+);
 
+app.controller(
+  'ExpensesListCtrl',
+  ['$scope', '$state', '$localstorage',
+  function($scope, $state, $localstorage) {
+    $scope.expensesDataList = $localstorage.getObjectList("expenses");
   }
   ]
 );
